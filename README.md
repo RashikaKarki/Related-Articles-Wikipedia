@@ -1,6 +1,6 @@
 # Related Articles Wikipedia
 
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![Demo](https://github.com/RashikaKarki/Related-Articles-Wikipedia/blob/main/resource/demo.gif)
 
 
 A simple web application that gives you list of related articles to the searched term in wikipedia. Uses Wikipedia Clickstream data. 
@@ -35,8 +35,11 @@ The data can be found at: https://dumps.wikimedia.org/other/clickstream/
 - Step 1:
 Clone the repo
 - Step 2: 
-Go to folder Flask API
+Install the required packages
+
+```pip install requirements.txt```
 - Step 3:
+Run the application
 
 ```
 set FLASK_APP=main.py
