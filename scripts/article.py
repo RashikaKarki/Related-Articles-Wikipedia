@@ -32,17 +32,17 @@ def related_articles(search_term):
 
     for i in list(df['Source']):
         if i.upper()  == search_term.upper():
-            pass
+            continue
         elif i in related_articles:
-            pass
+            continue
         else:
             related_articles.append(i)
 
     for i in list(df['Destination']):
         if i.upper()  == search_term.upper():
-            pass
+            continue
         elif i in related_articles:
-            pass
+            continue
         else:
             related_articles.append(i)
 
