@@ -23,7 +23,7 @@
       </div>
     </div>
 
-  <form action="/search/results" method="post">
+  <form action="/result" method="post">
     <div class="input-group">
       <input type="text" class="form-control input-lg" name="input" placeholder="Search"  autofocus>
       <div class="input-group-btn">
@@ -35,7 +35,7 @@
   </form>
 
   <center>
-      <h1>Results: 10 </h1>
+      <h1>Results: {{res['total']}} </h1>
   </center>
 
   <table class="table">
@@ -45,7 +45,7 @@
       </tr>
     </thead>
 
-{% for i in res %}
+{% for i in res['related article'] %}
     <tbody>
       <tr>
         <td>{{ i }}</td>

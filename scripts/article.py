@@ -29,18 +29,25 @@ def related_articles(search_term):
     df = df.reset_index(drop=True)
 
     related_articles = []
-    
-    related_articles.extend(list(df['Source']))
 
-    related_articles.extend(list(df['Destination']))
+    for i in list(df['Source']):
+        if i.upper()  == search_term.upper():
+            pass
+        elif i in related_articles:
+            pass
+        else:
+            related_articles.append(i)
 
-    # Removing the searched title from the list
-    try:
-        while True:
-            related_articles.remove(search_term)
-    except ValueError:
-        pass
+    for i in list(df['Destination']):
+        if i.upper()  == search_term.upper():
+            pass
+        elif i in related_articles:
+            pass
+        else:
+            related_articles.append(i)
 
-    print(related_articles)
+    response = dict()
+    response["related article"] = related_articles
+    response["total"] = len(related_articles)
 
-    return related_articles
+    return response

@@ -7,7 +7,7 @@ def get_chunks(dataset_dir):
     return chunks
 
 
-def get_dataframe(title, language = "enwiki", month = "2021-01"):
+def get_dataframe(title, language = "dewiki", month = "2021-01"):
     LANGUAGE = language
     MONTH = month
     SITENAME = LANGUAGE.replace('wiki', '.wikipedia')
@@ -20,7 +20,7 @@ def get_dataframe(title, language = "enwiki", month = "2021-01"):
         # Memory Optimization
         # Changing the datatype of "Type" attribute to category 
         chunk[2] = chunk[2].astype('category')
-        chunk = chunk[(de_chunk[0] == title)|(chunk[1] == title)]
+        chunk = chunk[(chunk[0] == title)|(chunk[1] == title)]
         data.append(chunk)
 
     df = pd.concat(data)
