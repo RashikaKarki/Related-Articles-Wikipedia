@@ -35,12 +35,10 @@ The data can be found at: https://dumps.wikimedia.org/other/clickstream/
 - Step 1:
 Clone the repo
 - Step 2: 
-Go to folder Flask API
-- Step 3: 
 Install the required packages
 
 ```pip install requirements.txt```
-- Step 4:
+- Step 3:
 Run the application
 
 ```
