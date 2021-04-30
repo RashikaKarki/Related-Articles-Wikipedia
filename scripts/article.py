@@ -16,12 +16,10 @@ def related_articles(search_term):
     min_in_15 = df.sort_values(['TotalNum'],ascending=False).head(15)['TotalNum'].min()
 
     # Dropping the data where pageview is less than min_in_15
-    x = df[(df['Destination'].str.title()==search_term.title()) & (df['TotalNum'] < min_in_15)].index
+    x = df[(df['TotalNum'] < min_in_15)].index
     df = df.drop(x, axis=0)
 
     df = df.reset_index(drop=True)
-
-    print(df)
 
     related_articles = []
 

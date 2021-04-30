@@ -1,5 +1,7 @@
 # Related Articles Wikipedia
 
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+
 
 A simple web application that gives you list of related articles to the searched term in wikipedia. Uses Wikipedia Clickstream data. 
 

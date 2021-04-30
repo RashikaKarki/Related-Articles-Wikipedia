@@ -14,49 +14,44 @@
 
   <div class="container">
     <div style="background:transparent !important" class="jumbotron">
-      <div style="font-family: 'Pacifico', cursive;">
+      <div style="font-family: 'Arial', cursive;">
         <p>
           <center>
-          <font size="8">Search for Related Articles</font>
+            <font size="8">Search for Related Articles</font>
           </center>
         </p>
       </div>
     </div>
 
-  <form action="/result" method="post">
-    <div class="input-group">
-      <input type="text" class="form-control input-lg" name="input" placeholder="Search"  autofocus>
-      <div class="input-group-btn">
-        <button class="btn btn-primary btn-lg" type="submit">
-          <i class="glyphicon glyphicon-search"></i>
-        </button>
+    <form action="/result" method="post">
+      <div class="input-group">
+        <input type="text" class="form-control input-lg" name="input" placeholder="Search"  autofocus>
+        <div class="input-group-btn">
+          <button class="btn btn-primary btn-lg" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
 
-  <center>
-      <h1>Results: {{res['total']}} </h1>
-  </center>
+    <center>
+        <h1>Results: {{res['total']}} </h1>
+    </center>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Related Articles</th>
-      </tr>
-    </thead>
-
-{% for i in res['related article'] %}
-    <tbody>
-      <tr>
-        <td>{{ i }}</td>
-      </tr>
-    </tbody>
-{% endfor %}
-  </table>
-
-       
-
-      </div>
-    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Related Articles</th>
+        </tr>
+      </thead>
+      {% for i in res['related article'] %}
+        <tbody>
+          <tr>
+            <td>{{ i }}</td>
+          </tr>
+        </tbody>
+      {% endfor %}
+    </table>
+  </div>
   </body>
 </html>
