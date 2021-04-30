@@ -12,26 +12,21 @@ def related_articles(search_term):
     df = get_data.get_dataframe(title = search_term)
     # Filter the dataframe with type as link
     df = df[df['Type'] == 'link']
-    # Finding minimum pageview among top 5 (source, destination) pairs where destination is Holland 
-    resource_min_in_5 = df[(df['Destination']==search_term)].sort_values(['TotalNum'],ascending=False).head(5)['TotalNum'].min()
+    # Finding minimum pageview among top 15 (source, destination) pairs
+    min_in_15 = df.sort_values(['TotalNum'],ascending=False).head(15)['TotalNum'].min()
 
-    # Dropping the data where destination is holland and pageview is less than resource_min_in_5
-    x = df[(df['Destination']==search_term) & (df['TotalNum'] < resource_min_in_5)].index
-    df = df.drop(x, axis=0)
-
-    #Finding minimum pageview among top 5 (source, destination) pairs where Source is Holland
-    referer_min_in_5 = df[(df['Source']==search_term)].sort_values(['TotalNum'],ascending=False).head(5)['TotalNum'].min()
-
-    # Dropping the data where source is holland and pageview is less than referer_min_in_5
-    x = df[(df['Source']==search_term)& (df['TotalNum'] < referer_min_in_5)].index
+    # Dropping the data where pageview is less than min_in_15
+    x = df[(df['Destination'].str.title()==search_term.title()) & (df['TotalNum'] < min_in_15)].index
     df = df.drop(x, axis=0)
 
     df = df.reset_index(drop=True)
 
+    print(df)
+
     related_articles = []
 
     for i in list(df['Source']):
-        if i.upper()  == search_term.upper():
+        if i.title()  == search_term.title():
             continue
         elif i in related_articles:
             continue
