@@ -7,7 +7,7 @@ def get_chunks(dataset_dir):
     return chunks
 
 
-def get_dataframe(title, language = "dewiki", month = "2021-01"):
+def get_dataframe(title, language = "enwiki", month = "2021-01"):
     LANGUAGE = language
     MONTH = month
     SITENAME = LANGUAGE.replace('wiki', '.wikipedia')
