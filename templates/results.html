@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
     <link rel="icon" href="http://obj-cache.cloud.ruanbekker.com/favicon.ico">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
     <title>Related Article Search</title>
 
   </head>
@@ -52,6 +53,14 @@
         </tbody>
       {% endfor %}
     </table>
+
+    <div class="chart" id="bargraph">
+      <script>
+          var graphs = plot;
+          Plotly.plot('bargraph',graphs,{});
+      </script>
+    </div>
+  
   </div>
   </body>
 </html>

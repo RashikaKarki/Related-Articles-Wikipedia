@@ -11,12 +11,20 @@ def related_articles(search_term):
     # Get dataframe
     df = get_data.get_dataframe(title = search_term)
     # Filter the dataframe with type as link
+    
     df = df[df['Type'] == 'link']
-    # Finding minimum pageview among top 15 (source, destination) pairs
-    min_in_15 = df.sort_values(['TotalNum'],ascending=False).head(15)['TotalNum'].min()
+    # Finding minimum pageview among top 15 (source, destination) pairs where destination is Holland 
+    resource_min_in_15 = df[(df['Destination']=='Holland')].sort_values(['TotalNum'],ascending=False).head(15)['TotalNum'].min()
 
-    # Dropping the data where pageview is less than min_in_15
-    x = df[(df['TotalNum'] < min_in_15)].index
+    # Dropping the data where destination is holland and pageview is less than resource_min_in_15
+    x = df[(df['Destination']=='Holland') & (df['TotalNum'] < resource_min_in_15)].index
+    df = df.drop(x, axis=0)
+
+    #Finding minimum pageview among top 15 (source, destination) pairs where Source is Holland
+    referer_min_in_15 = df[(df['Source']=='Holland')].sort_values(['TotalNum'],ascending=False).head(15)['TotalNum'].min()
+
+    # Dropping the data where source is holland and pageview is less than referer_min_in_15
+    x = df[(df['Source']=='Holland')& (df['TotalNum'] < referer_min_in_15)].index
     df = df.drop(x, axis=0)
 
     df = df.reset_index(drop=True)
@@ -42,5 +50,6 @@ def related_articles(search_term):
     response = dict()
     response["related article"] = related_articles
     response["total"] = len(related_articles)
+    response["dataframe"] = df
 
     return response
