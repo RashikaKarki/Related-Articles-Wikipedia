@@ -15,7 +15,8 @@ def home():
 @app.route('/result', methods=['GET', 'POST'])
 def search_request():
     search_term = request.form["input"]
-    res = article.related_articles(search_term)
+    language = request.form["language"]
+    res = article.related_articles(search_term, language)
     return render_template('results.html', res=res)
 
 

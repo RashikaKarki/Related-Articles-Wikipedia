@@ -1,16 +1,29 @@
 # import plotly # To plot sankey diagram
 from matplotlib import pyplot as plt
 from scripts import get_data
+import urllib
 
 
-def related_articles(search_term):
+def related_articles(search_term, language):
     """
         Returns a list of related articles with only top 5 (source, destination) pairs
         where destination is Holland and top 5 (source, destination) pair where
         source is Holland    
     """
+
+    response = dict()
+
     # Get dataframe
-    df = get_data.get_dataframe(title=search_term)
+    try:
+        df = get_data.get_dataframe(
+            title=search_term, language=language+"wiki")
+    except urllib.error.HTTPError:
+        # If there was no article found for the selected language
+        response["status"] = 404  # Not Found
+        response["related article"] = []
+        response["total"] = 0
+        return response
+
     # Filter the dataframe with type as link
     df = df[df['Type'] == 'link']
     # Finding minimum pageview among top 15 (source, destination) pairs
@@ -41,8 +54,8 @@ def related_articles(search_term):
         else:
             related_articles.append(i)
 
-    response = dict()
     response["related article"] = related_articles
     response["total"] = len(related_articles)
+    response["status"] = 200  # OK
 
     return response
